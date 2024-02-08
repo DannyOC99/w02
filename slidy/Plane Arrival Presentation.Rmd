@@ -1,0 +1,74 @@
+---
+title: "Plane Arrival Linear Analysis"
+author: "Daniel O'Callaghan"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+---
+title: '<center>A Linear Analysis on Plane Arrivals</center>'
+author:  '<font size = 5 color = "blue"> Daniel OCallaghan </font>'
+date: '<img src="img/plane.png" width=500 length=500><br><br> A presentation to demonstrate knowledge of HTML Presentations'
+output:
+  slidy_presentation:
+  font_adjustment: +1
+  footer: 'Slidy presentation created using RMarkdown
+(modified from the default template for STA490 Capstone
+Statistics)'
+  widescreen: yes
+  self_contained: true
+---
+<link href="CustomSlidy.css" rel="stylesheet">
+
+
+
+```{r setup, include=FALSE}
+if (!require("knitr")) {
+   install.packages("knitr")
+   library(knitr)
+}
+if (!require("pander")) {
+   install.packages("pander")
+   library(pander)
+}
+if (!require("tidyverse")) {
+   install.packages("tidyverse")
+   library(tidyverse)
+}
+if (!require("ggplot2")) {
+   install.packages("ggplot2")
+   library(ggplot2)
+}
+if (!require("plotly")) {
+   install.packages("plotly")
+   library(plotly)
+}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Getting Started with Slidy Presentation
+
+<div align="center">
+<table border = 0 width="80%">
+<tr>
+<td> 
+- Default template: simple and flexible.
+- Suggested modified template: YAML header
+<div style="font-size:3">
+```
+```
+</div>
+
+- CSS file (feel free to modify)
+
+- `(level 1 Header: #)` starts title slides with no accompanying text underneath.
+
+- `(level 2 Header: ##)` starts new slides with additional content underneath.
+
+- `Markdown tag ---`: an alternative to `##`. 
+
+</td>
+</tr>
+</table>
+</div>
+

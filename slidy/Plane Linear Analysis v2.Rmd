@@ -1,0 +1,113 @@
+
+---
+title: '<center>A Linear Analysis on Flight Delays</center>'
+author:  '<font size = 5 color = "blue"> Daniel OCallaghan </font>'
+date: '<img src="img/plane.png" width=500 length=500><br><br> A presentation to demonstrate knowledge of HTML Presentations'
+output:
+  slidy_presentation:
+    font_adjustment: +1
+    widescreen: yes
+    self_contained: true
+    theme: cerulean
+---
+
+
+
+
+```{r setup, include=FALSE}
+if (!require("knitr")) {
+   install.packages("knitr")
+   library(knitr)
+}
+if (!require("pander")) {
+   install.packages("pander")
+   library(pander)
+}
+if (!require("tidyverse")) {
+   install.packages("tidyverse")
+   library(tidyverse)
+}
+if (!require("ggplot2")) {
+   install.packages("ggplot2")
+   library(ggplot2)
+}
+if (!require("plotly")) {
+   install.packages("plotly")
+   library(plotly)
+}
+knitr::opts_chunk$set(echo = FALSE)
+flights<-read_csv(file='Flight_delay.csv')
+flights_data<-flights[c(6,7,10,11)]
+```
+
+
+# Table Of Contents
+
+- A Discussion on what we will be looking at
+  - A brief look at the table
+  - Summary Statistics for the Necessary Variables
+- Looking at the slope and graph for each linear model
+  - Delayed Flight vs Minutes of Late Arrival
+  - Delayed Flight vs Bagging Time
+  - Delayed Flight vs Time in security
+- Conclusions
+  - Which had the highest slope?
+  - Which had the highest correlation
+
+
+# Discussion {.bigger}
+
+- We want to take a look at 3 different variables and see how they affect arrival time.
+- Specifically we will be looking at how Flight Delay interacts with
+  - Late Arrival Time (in minutes)
+  - Baggage Loading Time (in minutes)
+  - Time in Security (in minutes)
+
+# Insight into data
+
+```{r eval=requireNamespace("DT", quietly=TRUE)}
+DT::datatable(flights_data, fillContainer = FALSE, options = list(pageLength = 10))
+```
+
+# Summary Statistics for Arrival Time
+
+```{r}
+knitr::kable(summary(flights_data))
+```
+
+# Linear Analyses {.bigger}
+
+- For this section we will be looking at the different Linear Relationships Delayed Flight has with Baggage Loading, Late Arrival, and Security Time
+- We will also be recording the slope and correlation of the relationship
+
+# Delayed Flight vs Late Arrival
+
+- In this relationship, our flight Delay will increase by 24.56196 minutes for every 1 minute increase in Late Arrival. This relationship has a correlation of 0.66684 
+
+```{r, fig.align='center', fig.width=4, fig.height=4}
+plot(flights$Late_Arrival_o,flights$Arr_Delay,xlab='Minutes Late', ylab= 'Flight Delay (mins)')
+abline(lm(flights$Arr_Delay ~ flights$Late_Arrival_o))
+```
+
+# Delayed Flight vs Baggage Time
+
+- In this relationship, Flight Delay increases by 33.54257 minutes for every 1 minute increase in baggage loading time 
+
+```{r, fig.align='center', fig.width=4, fig.height=4}
+plot(flights$Baggage_loading_time,flights$Arr_Delay,xlab='Time to bag (minutes)', ylab= 'Flight Delay (mins)')
+abline(lm(flights$Arr_Delay ~ flights$Baggage_loading_time))
+```
+
+# Delayed Flight vs Security Time
+
+- As seen Below, time in security has no linear relationship with a Delayed Flight
+
+```{r, fig.align='center', fig.width=4, fig.height=4}
+plot(flights$Security_o,flights$Arr_Delay,xlab='Security Time (minutes)', ylab= 'Delayed Flight (mins)')
+abline(lm(flights$Arr_Delay ~ flights$Security_o))
+```
+
+# Conclusions
+
+- After Looking at these 2 relationships, it is clear which one will be the best to model Flight Delay.
+- With both a higher slope and a higher correlation, we can see that Baggage Time will have more of an effect and increase in Departure Delay

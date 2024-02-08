@@ -1,0 +1,74 @@
+
+
+---
+title: "Plane Arrival Linear Analysis"
+author: "Daniel O'Callaghan"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+---
+title: '<center>A Linear Analysis on Plane Arrivals</center>'
+author:  '<font size = 5 color = "blue"> Daniel OCallaghan </font>'
+date: '<img src="img/plane.png" width=500 length=500><br><br> A presentation to demonstrate knowledge of HTML Presentations'
+output:
+  slidy_presentation:
+  font_adjustment: +1
+  footer: 'Slidy presentation created using RMarkdown
+(modified from the default template for STA490 Capstone
+Statistics)'
+  widescreen: yes
+  self_contained: true
+---
+<link href="CustomSlidy.css" rel="stylesheet">
+
+
+
+```{r setup, include=FALSE}
+if (!require("knitr")) {
+   install.packages("knitr")
+   library(knitr)
+}
+if (!require("pander")) {
+   install.packages("pander")
+   library(pander)
+}
+if (!require("tidyverse")) {
+   install.packages("tidyverse")
+   library(tidyverse)
+}
+if (!require("ggplot2")) {
+   install.packages("ggplot2")
+   library(ggplot2)
+}
+if (!require("plotly")) {
+   install.packages("plotly")
+   library(plotly)
+}
+knitr::opts_chunk$set(echo = FALSE)
+flights<-read_csv(file='Flight_delay.csv')
+```
+# Table Of Contents
+
+<div align="center">
+<table border = 0 width="60%">
+<tr>
+<td> 
+- A Discussion on what we be looking at
+  - A look at the table
+  -Summary Statistics For Arrival Time
+- level 1 bullet
+- level 1 bullet
+  - level 2 bullet
+    - level 3 bullet
+</td>
+</tr>
+</table>
+</div>
+
+#Insight into data
+```{r eval=requireNamespace("DT", quietly=TRUE)}
+DT::datatable(head(flights), fillContainer = FALSE, options = list(pageLength = 4))
+```
+
+# Summary Statistics for Arrival Time
